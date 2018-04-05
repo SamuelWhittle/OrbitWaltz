@@ -16,7 +16,7 @@ var angle2 = Math.PI*3/2;
 var divisor2 = 15;
 
 var interval;
-var time;
+var time = 500;
 
 var centerX = 360;
 var centerY = 360;
@@ -54,30 +54,34 @@ rad1Slider.oninput = function() {
 	rad1Value.innerHTML = this.value;
 	radius1 = this.value;
 	resetScreen();
+	main();
 }
 rad2Slider.oninput = function() {
 	rad2Value.innerHTML = this.value;
 	radius2 = this.value;
 	resetScreen();
+	main();
 }
 div1Slider.oninput = function() {
 	div1Value.innerHTML = this.value;
 	divisor1 = this.value;
 	resetScreen();
+	main();
 }
 div2Slider.oninput = function() {
 	div2Value.innerHTML = this.value;
 	divisor2 = this.value;
 	resetScreen();
+	main();
 }
 speedDivSlider.oninput = function() {
 	speedDivValue.innerHTML = this.value;
-	speedDivisor = this.value;
+	time = this.value;
 	resetScreen();
 	main();
 }
 function main() {
-	clearInterval();
+	clearInterval(interval);
 	interval = setInterval(function(){
 	ctx.beginPath();
 	ctx.arc(centerX, centerY, radius1, 0, 2*Math.PI);
