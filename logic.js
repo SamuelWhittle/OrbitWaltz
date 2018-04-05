@@ -15,7 +15,8 @@ var radius2 = 150;
 var angle2 = Math.PI*3/2;
 var divisor2 = 15;
 
-var speedDivisor = 60;
+var interval;
+var time;
 
 var centerX = 360;
 var centerY = 360;
@@ -73,30 +74,32 @@ speedDivSlider.oninput = function() {
 	speedDivValue.innerHTML = this.value;
 	speedDivisor = this.value;
 	resetScreen();
+	main();
 }
 function main() {
-	setInterval(function () {
-		ctx.beginPath();
-		ctx.arc(centerX, centerY, radius1, 0, 2*Math.PI);
-		ctx.stroke();
+	clearInterval();
+	interval = setInterval(function(){
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius1, 0, 2*Math.PI);
+	ctx.stroke();
 	
-		ctx.beginPath();
-		ctx.arc(centerX, centerY, radius2, 0, 2*Math.PI);
-		ctx.stroke();
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius2, 0, 2*Math.PI);
+	ctx.stroke();
 	
-		angle1 += (2*Math.PI)/divisor1;
-		angle2 += (2*Math.PI)/divisor2;
+	angle1 += (2*Math.PI)/divisor1;
+	angle2 += (2*Math.PI)/divisor2;
 	
-		x1 = centerX+(radius1*Math.cos(angle1));
-		y1 = centerY+(radius1*Math.sin(angle1));
-		x2 = centerX+(radius2*Math.cos(angle2));
-		y2 = centerY+(radius2*Math.sin(angle2));
+	x1 = centerX+(radius1*Math.cos(angle1));
+	y1 = centerY+(radius1*Math.sin(angle1));
+	x2 = centerX+(radius2*Math.cos(angle2));
+	y2 = centerY+(radius2*Math.sin(angle2));
 	
-		ctx.beginPath();
-		ctx.moveTo(x1, y1);
-		ctx.lineTo(x2, y2);
-		ctx.stroke();
-	}, speedDivisor);
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.stroke();
+	}, time);
 }
 
 main();
